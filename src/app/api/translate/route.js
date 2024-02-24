@@ -11,7 +11,7 @@ export async function POST(req, res) {
         }
 
         const resp = await translate(text, { from: 'en', to: 'fr' });
-        
+
         return NextResponse.json({ status: 200, translation: resp.text });
     } catch (error) {
         if (error.name === 'TooManyRequestsError') {
@@ -20,4 +20,8 @@ export async function POST(req, res) {
         console.error(error);
         return NextResponse.json({ status: 500, error: 'Internal Server Error' });
     }
+}
+
+export function GET(req, res) {
+    return NextResponse.json({ message: "Please make a POST req to this same endpoint from Postman or cUrl" })
 }
